@@ -22,10 +22,10 @@
             <div class="flex gap-x-2 items-center">
                 <div class="avatar">
                     <div class="w-8 rounded-full">
-                        <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
+                        <img src="{{ auth()->user()->avatar_url }}" alt="avatar picture" />
                     </div>
                 </div>
-                <p>Username</p>
+                <p>{{ auth()->user()->name }}</p>
             </div>
             <form method="POST" action="/logout" class="inline">
                 @csrf
