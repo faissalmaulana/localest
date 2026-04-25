@@ -57,7 +57,7 @@ class CityController extends Controller
     {
         $validated = $request->validate([
             "name" => "required|string|max:255",
-            "country_id" => "required|uuid|exists:countries,id",
+            "country_id" => "uuid|exists:countries,id",
         ]);
 
         try {
