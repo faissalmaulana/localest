@@ -34,7 +34,7 @@
                         <span class="badge badge-secondary">34 Places</span>
                     </div>
                     <p class="text-sm text-base-content/70 mt-6">
-                        Last updated {{ $city->updated_at->format('M Y') }}
+                        Last updated {{ $city->updated_at->format('M D Y') }}
                     </p>
                 </div>
             </div>
