@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable("name", "iso2_code")]
+#[Fillable("name", "iso2_code", "country_id")]
 class Country extends Model
 {
     use HasUuids;
