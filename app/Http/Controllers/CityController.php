@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CityController extends Controller
 {
@@ -12,7 +13,24 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            /** @var \App\Models\User $user */
+            $user = Auth::user();
+
+            $cities = $user?->cities()
+                ->select('id', 'name', 'country_id', 'updated_at')
+                ->with('country:id,iso2_code')
+                ->get();
+
+
+            return view('pages.home', ["cities" => $cities]);
+        } catch (\Throwable $e) {
+            report($e);
+
+            return back()->withErrors([
+                "error" => "Something went wrong",
+            ]);
+        }
     }
 
     /**
