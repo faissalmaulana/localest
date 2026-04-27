@@ -16,7 +16,11 @@ Route::middleware("guest")->group(function () {
 Route::middleware("auth")->group(function () {
     Route::prefix("cities")->group(function () {
         Route::post("/", [CityController::class, "store"]);
-        Route::get("/add", [CityController::class, "create"]);
+        Route::get("/new", [CityController::class, "create"]);
+        Route::get("/{city}", [CityController::class, "show"]);
+        Route::get("/{city}/edit", [CityController::class, "edit"]);
+        Route::put("/{city}", [CityController::class, "update"]);
+        Route::delete("/{city}", [CityController::class, "destroy"]);
     });
 });
 

@@ -15,7 +15,7 @@
             </div>
 
             <div class="flex items-center gap-2">
-                <a href="/cities/add" class="btn btn-primary">
+                <a href="/cities/new" class="btn btn-primary">
                     New City
                 </a>
             </div>
@@ -25,19 +25,21 @@
 
             @auth
             @forelse ($cities as $city)
-            <div class="card bg-base-100 border shadow-sm">
-                <div class="card-body">
-                    <div class="flex justify-between">
-                        <h2 class="text-lg font-medium">
-                            {{ $city->name . ', ' . ($city->country?->iso2_code ?? 'UNK') }}
-                        </h2>
-                        <span class="badge badge-secondary">34 Places</span>
+            <a href="/cities/{{$city->id}}">
+                <div class="card bg-base-100 border shadow-sm">
+                    <div class="card-body">
+                        <div class="flex justify-between">
+                            <h2 class="text-lg font-medium">
+                                {{ $city->name . ', ' . ($city->country?->iso2_code ?? 'UNK') }}
+                            </h2>
+                            <span class="badge badge-secondary">34 Places</span>
+                        </div>
+                        <p class="text-sm text-base-content/70 mt-6">
+                            Last updated {{ $city->updated_at->format('M D Y') }}
+                        </p>
                     </div>
-                    <p class="text-sm text-base-content/70 mt-6">
-                        Last updated {{ $city->updated_at->format('M D Y') }}
-                    </p>
                 </div>
-            </div>
+            </a>
             @empty
             <div class="col-span-full">
                 <div class="flex flex-col items-center justify-center text-center py-16">

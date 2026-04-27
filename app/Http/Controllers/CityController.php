@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -77,32 +78,59 @@ class CityController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(City $city)
     {
-        //
+        return view("pages.city.detail", ["city" => $city]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(City $city)
     {
-        //
+        $countries = Country::get(["id", "name"]);
+
+        return view("pages.city.edit", ["city" => $city, "countries" => $countries]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, City $city)
     {
-        //
+        $validated = $request->validate([
+            "name" => "required|string|max:255",
+            "country_id" => "uuid|exists:countries,id",
+        ]);
+
+        try {
+            $city->updateOrFail($validated);
+        } catch (\Throwable $e) {
+            report($e);
+
+            return back()->withErrors([
+                "error" => "Something went wrong",
+            ]);
+        }
+
+        return redirect('/')->with('success', 'City updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(City $city)
     {
-        //
+        try {
+            $city->delete();
+        } catch (\Throwable $e) {
+            report($e);
+
+            return back()->withErrors([
+                "error" => "Something went wrong",
+            ]);
+        }
+
+        return redirect('/')->with('success', 'City deleted!');
     }
 }
