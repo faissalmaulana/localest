@@ -48,7 +48,7 @@
                         <a href="/" class="btn btn-ghost">
                             Cancel
                         </a>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to update this city ?')">
                             Update City
                         </button>
                     </div>

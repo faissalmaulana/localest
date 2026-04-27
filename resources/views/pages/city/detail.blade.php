@@ -17,7 +17,9 @@
                     <form method="POST" action="/cities/{{$city->id}}" class="w-full">
                         @csrf
                         @method("DELETE")
-                        <button class="btn btn-soft btn-error btn-block" type="submit">Delete City</button>
+                        <button class="btn btn-soft btn-error btn-block" type="submit" onclick="return confirm('Are you sure you want to delete this city ?')">
+                            Delete City
+                        </button>
                     </form>
                 </div>
             </div>
