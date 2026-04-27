@@ -24,6 +24,7 @@
                         </label>
                         <input
                             type="text"
+                            autofocus
                             name="name"
                             placeholder="e.g., Los Angeles"
                             class="input input-bordered w-full"
