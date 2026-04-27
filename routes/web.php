@@ -14,8 +14,10 @@ Route::middleware("guest")->group(function () {
 });
 
 Route::middleware("auth")->group(function () {
-    Route::post("/cities", [CityController::class, "store"]);
-    Route::get("/add-new-city", [CityController::class, "create"]);
+    Route::prefix("cities")->group(function () {
+        Route::post("/", [CityController::class, "store"]);
+        Route::get("/add", [CityController::class, "create"]);
+    });
 });
 
 Route::post("/logout", Logout::class)->middleware("auth");

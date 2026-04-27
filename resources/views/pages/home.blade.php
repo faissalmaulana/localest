@@ -15,7 +15,7 @@
             </div>
 
             <div class="flex items-center gap-2">
-                <a href="/add-new-city" class="btn btn-primary">
+                <a href="/cities/add" class="btn btn-primary">
                     New City
                 </a>
             </div>
