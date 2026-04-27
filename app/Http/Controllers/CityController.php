@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Country;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CityController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -88,6 +90,8 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
+        $this->authorize("update", $city);
+
         $countries = Country::get(["id", "name"]);
 
         return view("pages.city.edit", ["city" => $city, "countries" => $countries]);
@@ -98,6 +102,8 @@ class CityController extends Controller
      */
     public function update(Request $request, City $city)
     {
+        $this->authorize("update", $city);
+
         $validated = $request->validate([
             "name" => "required|string|max:255",
             "country_id" => "uuid|exists:countries,id",
@@ -121,6 +127,8 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
+        $this->authorize("delete", $city);
+
         try {
             $city->delete();
         } catch (\Throwable $e) {
