@@ -82,9 +82,39 @@ class CityController extends Controller
      */
     public function show(City $city)
     {
-        return view("pages.city.detail", ["city" => $city]);
-    }
+        $city->load([
+            'places' => function ($query) {
+                $query->orderBy('category');
+            }
+        ]);
 
+
+        $placesByCategory = $city->places->groupBy(function ($place) {
+            return $place->category ?? 'Uncategorized';
+        });
+
+        $categoryGroups = $placesByCategory->map(function ($places, $categoryName) {
+            return (object)[
+                'category' => $categoryName,
+                'items' => $places->values(),
+            ];
+        })->values();
+
+        // Extract category names
+        $categoryNames = $placesByCategory->keys()->values();
+
+        $cityView = (object) [
+            'id' => $city->id,
+            'name' => $city->name,
+            'country' => $city->country,
+            'categoryGroups' => $categoryGroups,
+            'categories' => $categoryNames,
+        ];
+
+        return view("pages.city.detail", [
+            "city" => $cityView,
+        ]);
+    }
     /**
      * Show the form for editing the specified resource.
      */

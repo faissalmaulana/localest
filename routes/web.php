@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\LoginCallback;
 use App\Http\Controllers\Auth\Logout;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\PlaceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CityController::class, "index"]);
@@ -21,6 +22,13 @@ Route::middleware("auth")->group(function () {
         Route::get("/{city}/edit", [CityController::class, "edit"]);
         Route::put("/{city}", [CityController::class, "update"]);
         Route::delete("/{city}", [CityController::class, "destroy"]);
+
+
+        Route::get("/{city}/places/new", [PlaceController::class, "create"]);
+    });
+
+    Route::prefix("places")->group(function () {
+        Route::post("/", [PlaceController::class, "store"]);
     });
 });
 
