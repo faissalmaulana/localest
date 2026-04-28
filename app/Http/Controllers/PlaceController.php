@@ -88,9 +88,9 @@ class PlaceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Place $place)
+    public function show(City $city, Place $place)
     {
-        //
+        return view("pages.place.detail", ["place" => $place]);
     }
 
     /**

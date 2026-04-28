@@ -25,6 +25,7 @@ Route::middleware("auth")->group(function () {
 
 
         Route::get("/{city}/places/new", [PlaceController::class, "create"]);
+        Route::get("/{city}/places/{place}", [PlaceController::class, "show"]);
         Route::get("/{city}/places/{place}/edit", [PlaceController::class, "edit"]);
     });
 

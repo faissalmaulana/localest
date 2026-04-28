@@ -43,7 +43,7 @@
                 <li class="list-row">
                     <div></div>
                     <div>
-                        <a href="#">{{ ucwords($place->name) }}</a>
+                        <a href="/cities/{{$city->id}}/places/{{$place->id}}">{{ ucwords($place->name) }}</a>
                         <div class="text-xs uppercase font-semibold opacity-60">
                             {{ $place->description }}
                         </div>
