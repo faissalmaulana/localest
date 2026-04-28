@@ -32,7 +32,7 @@
                             <h2 class="text-lg font-medium">
                                 {{ $city->name . ', ' . ($city->country?->iso2_code ?? 'UNK') }}
                             </h2>
-                            <span class="badge badge-secondary">34 Places</span>
+                            <span class="badge badge-secondary">{{$city->places_count ?? 0}} Places</span>
                         </div>
                         <p class="text-sm text-base-content/70 mt-6">
                             Last updated {{ $city->updated_at->format('M D Y') }}

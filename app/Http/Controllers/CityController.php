@@ -23,6 +23,7 @@ class CityController extends Controller
             $cities = $user?->cities()
                 ->select('id', 'name', 'country_id', 'updated_at')
                 ->with('country:id,iso2_code')
+                ->withCount('places')
                 ->get();
 
 
