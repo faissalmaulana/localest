@@ -37,6 +37,7 @@ class PlaceController extends Controller
         $validated = $request->validate([
             "city_id" => "required|exists:cities,id",
             "name" => "required|string|max:255",
+            "address" => "required|string|max:255",
             "description" => "nullable|string|max:255",
             "category" => "nullable|string|max:255",
             "notes" => "nullable|string|max:255",
@@ -64,6 +65,7 @@ class PlaceController extends Controller
         try {
             $city->places()->create([
                 "name" => $validated["name"],
+                "address" => $validated["address"],
                 "description" => $validated["description"],
                 "category" => $validated["category"],
                 "notes" => $validated["notes"],
@@ -109,6 +111,7 @@ class PlaceController extends Controller
         $validated = $request->validate([
             "city_id" => "required|exists:cities,id",
             "name" => "required|string|max:255",
+            "address" => "required|string|max:255",
             "description" => "nullable|string|max:255",
             "category" => "nullable|string|max:255",
             "notes" => "nullable|string|max:255",
@@ -137,6 +140,7 @@ class PlaceController extends Controller
         try {
             $place->updateOrFail([
                 "name" => $validated["name"],
+                "address" => $validated["address"],
                 "description" => $validated["description"],
                 "category" => $validated["category"],
                 "notes" => $validated["notes"],

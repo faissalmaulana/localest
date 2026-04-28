@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid("id")->primary();
             $table->foreignUuid("city_id")->constrained()->cascadeOnDelete();
             $table->string("name");
+            $table->string("address");
             $table->text("description")->nullable();
             $table->text("notes")->nullable();
             $table->string("category")->nullable();

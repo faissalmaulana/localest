@@ -65,6 +65,23 @@
                             @enderror
                         </div>
 
+                        <div class="form-control mt-6 self-center">
+                            <label class="label">
+                                <span class="label-text font-medium">Address</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="address"
+                                value="{{old('address',$place->address)}}"
+                                placeholder="e.g., 123 Main St"
+                                class="input input-bordered w-full" />
+
+                            @error('address')
+                            <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+
                         <div class="form-control mt-9.5">
                             <fieldset class="fieldset">
                                 <legend class="fieldset-legend">Upload an Image File</legend>
