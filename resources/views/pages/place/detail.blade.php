@@ -30,7 +30,7 @@
 
         <div class="mt-6">
             <div class="flex items-end gap-2 text-sm text-base-content/60">
-                <div class="badge badge-outline badge-primary">{{ucfirst($place->category) ?? 'Uncategorized'}}</div>
+                <div class="badge badge-outline badge-primary">{{ucfirst($place->category ?? 'Uncategorized')}}</div>
                 <div class="flex gap-x-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar">
                         <path d="M8 2v4" />
