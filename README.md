@@ -15,4 +15,4 @@ Here’s a quick demo showing how to:
 - Add a new place
 - Edit or delete a place
   
-[demo.webm](https://github.com/user-attachments/assets/df2e1a2e-cc95-4910-bac9-a27a6316dda1)
+[demo.webm (https://www.faissalmaulana.dev/images/localest-demo.webm)](https://www.faissalmaulana.dev/images/localest-demo.webm)
