@@ -14,3 +14,5 @@ Here’s a quick demo showing how to:
 - Add a new city
 - Add a new place
 - Edit or delete a place
+  
+[demo.webm (https://www.faissalmaulana.dev/images/localest-demo.webm)](https://www.faissalmaulana.dev/images/localest-demo.webm)
