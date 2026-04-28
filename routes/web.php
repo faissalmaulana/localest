@@ -25,10 +25,13 @@ Route::middleware("auth")->group(function () {
 
 
         Route::get("/{city}/places/new", [PlaceController::class, "create"]);
+        Route::get("/{city}/places/{place}/edit", [PlaceController::class, "edit"]);
     });
 
     Route::prefix("places")->group(function () {
         Route::post("/", [PlaceController::class, "store"]);
+        Route::put("/{place}", [PlaceController::class, "update"]);
+        Route::delete("/{place}", [PlaceController::class, "destroy"]);
     });
 });
 

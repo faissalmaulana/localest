@@ -96,9 +96,9 @@ class PlaceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Place $place)
+    public function edit(City $city, Place $place)
     {
-        //
+        return view("pages.place.edit", ["city" => $city, "place" => $place]);
     }
 
     /**
@@ -106,14 +106,83 @@ class PlaceController extends Controller
      */
     public function update(Request $request, Place $place)
     {
-        //
+        $validated = $request->validate([
+            "city_id" => "required|exists:cities,id",
+            "name" => "required|string|max:255",
+            "description" => "nullable|string|max:255",
+            "category" => "nullable|string|max:255",
+            "notes" => "nullable|string|max:255",
+            "image_url" => "nullable|image|max:2048",
+        ]);
+
+        $city = $request->user()
+            ->cities()
+            ->findOrFail($validated['city_id']);
+
+        $this->authorize("update", $city);
+
+        // default value
+        $imagePath = $place->image_url;
+
+        if ($request->hasFile('image_url')) {
+            $imagePath = $request->file('image_url')->store('images');
+
+            if ($imagePath === false) {
+                return back()->withErrors([
+                    "image_url" => "Failed to upload image.",
+                ]);
+            }
+        }
+
+        try {
+            $place->updateOrFail([
+                "name" => $validated["name"],
+                "description" => $validated["description"],
+                "category" => $validated["category"],
+                "notes" => $validated["notes"],
+                "image_url" => $imagePath,
+            ]);
+        } catch (\Throwable $err) {
+            report($err);
+
+            // cleanup only if the image was uploaded and stored
+            if (is_string($imagePath) && $request->hasFile('image_url')) {
+                Storage::disk('local')->delete($imagePath);
+            }
+
+            return back()->withErrors([
+                "error" => "Something went wrong",
+            ]);
+        }
+
+        return redirect("/cities/{$validated['city_id']}")->with('success', 'Place edited!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Place $place)
+    public function destroy(Request $request, Place $place)
     {
-        //
+        $cityId = $request->validate([
+            "city_id" => "required|exists:cities,id",
+        ])["city_id"];
+
+        $city = $request->user()
+            ->cities()
+            ->findOrFail($cityId);
+
+        try {
+            $this->authorize("delete", $city);
+
+            $place->delete();
+        } catch (\Throwable $e) {
+            report($e);
+
+            return back()->withErrors([
+                "error" => "Something went wrong",
+            ]);
+        }
+
+        return back()->with('success', 'Place deleted!');
     }
 }
