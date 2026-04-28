@@ -33,23 +33,17 @@
             </div>
             <div class="divider"></div>
 
-            <div class="flex gap-x-2 mb-5 flex-no-wrap overflow-x-auto">
-                @foreach($city->categories as $category)
-                <div class="badge badge-outline badge-primary badge-lg">{{$category}}</div>
-                @endforeach
-            </div>
-
             <ul class="list rounded-box">
                 @foreach($city->categoryGroups as $group)
                 <li class="p-4 pb-2 text-lg opacity-60 tracking-wide">
-                    {{ $group->category }}
+                    {{ ucwords($group->category) }}
                 </li>
 
                 @foreach($group->items as $place)
                 <li class="list-row">
                     <div></div>
                     <div>
-                        <a href="#">{{ $place->name }}</a>
+                        <a href="#">{{ ucwords($place->name) }}</a>
                         <div class="text-xs uppercase font-semibold opacity-60">
                             {{ $place->description }}
                         </div>
