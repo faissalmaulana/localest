@@ -8,9 +8,9 @@
         {{-- Header --}}
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 border-b border-b-gray-300 pb-8">
             <div>
-                <h1 class="text-3xl font-semibold">My Places</h1>
+                <h1 class="text-3xl font-semibold">My Cities</h1>
                 <p class="text-base-content/70 mt-1">
-                    Your collection of favorite places.
+                    Your collection of cities
                 </p>
             </div>
 

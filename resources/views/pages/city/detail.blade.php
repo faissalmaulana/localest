@@ -37,7 +37,14 @@
         </div>
         <div class="flex-1">
             <div class="flex justify-between items-end">
-                <h2 class="text-2xl font-semibold">Places</h2>
+                <div>
+                    <h2 class="text-2xl font-semibold">My Places</h2>
+                    <p class="text-base-content/70 mt-1">
+                        Your collection of favorite places.
+                    </p>
+
+                </div>
+
                 <a href="/cities/{{$city->id}}/places/new" class="btn btn-primary">
                     New place
                 </a>
