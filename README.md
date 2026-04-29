@@ -15,4 +15,4 @@ Here’s a quick demo showing how to:
 - Add a new place
 - Edit or delete a place
   
-[demo.webm (https://www.faissalmaulana.dev/images/localest-demo.webm)](https://www.faissalmaulana.dev/images/localest-demo.webm)
+[demo.webm (https://www.faissalmaulana.dev/demos/localest.webm)](https://www.faissalmaulana.dev/demos/localest.webm)
